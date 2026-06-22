@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./pages/Layout";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/Dashboard";
@@ -6,7 +6,7 @@ import Projects from "./pages/Projects";
 import Team from "./pages/Team";
 import ProjectDetails from "./pages/ProjectDetails";
 import TaskDetails from "./pages/TaskDetails";
-import { SignUp } from "@clerk/react";
+import { SignUp, AuthenticateWithRedirectCallback } from "@clerk/react";
 
 const App = () => {
   return (
@@ -28,6 +28,9 @@ const App = () => {
             </div>
           }
         />
+        <Route path="/sso-callback" element={<AuthenticateWithRedirectCallback />} />
+        <Route path="//sso-callback" element={<AuthenticateWithRedirectCallback />} />
+        <Route path="/sign-in" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
